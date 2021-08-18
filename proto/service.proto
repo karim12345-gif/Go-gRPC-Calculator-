@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package service;
+option go_package = 'github.com/karim12345-gif/grpc_codingtest';
+
+//protocol buffer message type definitions for all the request and response types used in our service methods 
+
+// AddRequest are repersented as a send request to the server , e.g 2 + 2 , t
+//then the client has to wait for the server's reply 
+message AddRequest {
+    int32 number1 = 1;
+    int32 number2 = 2;
+}
+//protocol buffer message type definitions for all the request and response types used in our service methods 
+// Server answers back to with the answer 
+message AddReply {
+    int32 number1 = 1;
+}
+//protocol buffer message type definitions for all the request and response types used in our service methods 
+message SubtractRequest {
+    int32 number1 = 1;
+    int32 number2 = 2;
+}
+//protocol buffer message type definitions for all the request and response types used in our service methods 
+message SubtractReply {
+    int32 number1 = 1;
+}
+
+message MultiplyRequest {
+    int32 number1 = 1;
+    int32 number2 = 2;
+}
+
+message MultiplyReply {
+    int32 number1 = 1;
+}
+
+message DivideRequest {
+    int32 number1 = 1;
+    int32 number2 = 2;
+}
+
+message DivideReply {
+    int32 number1 = 1;
+}
+
+// Receives the request messages and will return the response message 
+//A client-side streaming RPC where the client writes a sequence of messages and sends them to the server, 
+//again using a provided stream. Once the client has finished writing the messages, it waits for the server to read them all and return its response
+// which in this case is the Add, Subtract, Multiply and Divide. 
+service Calculator {
+    rpc Add(AddRequest) returns (AddReply) {}
+    rpc Subtract(SubtractRequest) returns (SubtractReply) {}
+    rpc Multiply(MultiplyRequest) returns (MultiplyReply) {}
+    rpc Divide(DivideRequest) returns (DivideReply) {}
+}
+
